@@ -1,0 +1,129 @@
+﻿@using Microsoft.AspNetCore.Antiforgery
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Identity Email Projesi</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/quixlab-master/images/favicon.png">
+    <!-- Custom Stylesheet -->
+    <link href="/quixlab-master/css/style.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+ 
+
+        <!--*******************
+        Preloader start
+    ********************-->
+    <!--*******************
+        Preloader end
+    ********************-->
+    <!--**********************************
+        Main wrapper start
+    ***********************************-->
+    
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                        <div class="email-left-box">
+                            <a href="/Message/CreateMessage/" class="btn btn-primary btn-block">Identity Projesi</a>
+                            <div class="mail-list mt-4">
+                                <a href="#" class="list-group-item border-0 p-r-0">
+                                    <i class="fa fa-user font-18 align-middle mr-2"></i> Profilim
+                                </a>
+                                <a href="/Message/Inbox/" class="list-group-item border-0 text-primary p-r-0">
+                                    <i class="fa fa-inbox font-18 align-middle mr-2"></i>
+                                    <b>Gelen Mesajlar</b>
+                                    <span class="badge badge-primary badge-sm float-right m-t-5">@ViewBag.GelenMesajSayisi</span>
+                                </a>
+                                <a href="/Message/SendBox/" class="list-group-item border-0 p-r-0">
+                                    <i class="fa fa-paper-plane font-18 align-middle mr-2"></i>
+                                    <b>Giden Mesajlar</b>
+                                    <span class="badge badge-warning badge-sm float-right m-t-5">@ViewBag.GidenMesajSayisi</span>
+                                </a>
+                                <a href="/Message/CreateMessage/" class="list-group-item border-0 p-r-0">
+                                    <i class="fa fa-pencil font-18 align-middle mr-2"></i> Yeni mesaj oluştur
+                                </a>
+                                <a href="/Register/CreateUser/" class="list-group-item border-0 p-r-0">
+                                    <i class="mdi mdi-file-document-box font-18 align-middle mr-2"></i> Yeni kullanıcı oluştur
+                                </a>
+                                <a href="/Login/UserLogin/" class="list-group-item border-0 p-r-0">
+                                    <i class="fa fa-sign-in font-18 align-middle mr-2"></i> Giriş Yap
+                                </a>
+                                <form id="logoutForm" method="post" action="/Register/Logout" class="d-inline">
+                                    @Html.AntiForgeryToken()
+                                    <a href="javascript:{}" onclick="document.getElementById('logoutForm').submit();" class="list-group-item border-0 p-r-0">
+                                        <i class="fa fa-sign-out font-18 align-middle mr-2"></i> Çıkış Yap
+                                    </a>
+                                </form>
+
+                            </div>
+                        </div>
+
+                            <div class="email-right-box">
+
+                           
+                                    @RenderBody()
+                                    
+                                </div>
+                                <!-- panel -->
+                                <div class="row">
+                                   
+                                    <div class="col-12">
+                                        <div class="btn-group float-right">
+                                            <button class="btn btn-gradient" type="button">
+                                                <i class="fa fa-angle-left"></i>
+                                            </button>
+                                            <button class="btn btn-dark" type="button">
+                                                <i class="fa fa-angle-right"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #/ container -->
+    </div>
+    <!--**********************************
+        Content body end
+    ***********************************-->
+    <!--**********************************
+        Footer start
+    ***********************************-->
+    <div class="footer">
+        <div class="copyright">
+            <p>Tüm Hakları Saklıdır; Designed & Developed by <a href="https://themeforest.net/user/quixlab">Cevdet Karakulak</a> @DateTime.Now.Year</p>
+        </div>
+    </div>
+    <!--**********************************
+        Footer end
+    ***********************************-->
+    </div>
+    <!--**********************************
+        Main wrapper end
+    ***********************************-->
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    <script src="/quixlab-master/plugins/common/common.min.js"></script>
+    <script src="/quixlab-master/js/custom.min.js"></script>
+    <script src="/quixlab-master/js/settings.js"></script>
+    <script src="/quixlab-master/js/gleek.js"></script>
+    <script src="/quixlab-master/js/styleSwitcher.js"></script>
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>

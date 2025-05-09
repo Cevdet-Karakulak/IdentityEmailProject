@@ -1,0 +1,42 @@
+﻿@model List<IdentityEmailProject.Entities.Message>
+
+@{
+    ViewData["Title"] = "Inbox";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    int count = 0;
+}
+<form method="get" action="/Message/Search" class="mb-3">
+    <div class="input-group">
+        <input type="text" name="query" class="form-control" placeholder="Mesajlarda ara...">
+        <input type="hidden" name="page" value="inbox" /> 
+        <div class="input-group-append">
+            <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
+        </div>
+    </div>
+</form>
+<h3>Gelen Mesajlar</h3>
+
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>Gönderen Email</th>
+        <th>Konu</th>
+        <th>Mesaj Detayı</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        count++;
+        var rowClass = item.IsRead ? "table-light" : "font-weight-bold";
+        <tr class="@rowClass">
+            <td>@count</td>
+            <td>@item.SenderEmail</td>
+            <td>@item.Subject</td>
+            <td>
+                <a href="/Message/MessageDetail/@item.MessageId" style="text-decoration: none; color: #007bff;">
+                    @item.MessageDetail.Substring(0, Math.Min(50, item.MessageDetail.Length))...
+                </a>
+            </td>
+        </tr>
+    }
+</table>
+
