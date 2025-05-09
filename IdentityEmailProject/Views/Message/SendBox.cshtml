@@ -15,8 +15,18 @@
         </div>
     </div>
 </form>
-<h3>Giden Mesajlar</h3>
+<form method="post" action="/Message/ChangeMessageStatus">
+        <div role="toolbar" class="toolbar">
+            <div class="btn-group">
+                <button aria-expanded="false" data-toggle="dropdown" class="btn btn-dark dropdown-toggle" type="button">
+                    Giden Mesajlar  <span class="caret m-l-5"></span>
+                </button>
+                <div class="dropdown-menu">
+                    <button type="submit" class="btn btn-outline-danger">Okundu Olarak İşaretle</button>
+                </div>
+            </div>
 
+        </div>
 <table class="table table-bordered">
     <tr>
         <th>#</th>
@@ -40,7 +50,7 @@
     }
 </table>
 
-
+</form>
 
 @section Scripts {
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

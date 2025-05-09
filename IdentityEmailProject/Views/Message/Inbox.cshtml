@@ -5,6 +5,7 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
     int count = 0;
 }
+
 <form method="get" action="/Message/Search" class="mb-3">
     <div class="input-group">
         <input type="text" name="query" class="form-control" placeholder="Mesajlarda ara...">
@@ -14,29 +15,39 @@
         </div>
     </div>
 </form>
-<h3>Gelen Mesajlar</h3>
 
-<table class="table table-bordered">
-    <tr>
-        <th>#</th>
-        <th>Gönderen Email</th>
-        <th>Konu</th>
-        <th>Mesaj Detayı</th>
-    </tr>
-    @foreach (var item in Model)
-    {
-        count++;
-        var rowClass = item.IsRead ? "table-light" : "font-weight-bold";
-        <tr class="@rowClass">
-            <td>@count</td>
-            <td>@item.SenderEmail</td>
-            <td>@item.Subject</td>
-            <td>
-                <a href="/Message/MessageDetail/@item.MessageId" style="text-decoration: none; color: #007bff;">
-                    @item.MessageDetail.Substring(0, Math.Min(50, item.MessageDetail.Length))...
-                </a>
-            </td>
-        </tr>
-    }
-</table>
+<form method="post" action="/Message/ChangeMessageStatus">
+        <div role="toolbar" class="toolbar">
+            <div class="btn-group">
+                <button aria-expanded="false" data-toggle="dropdown" class="btn btn-dark dropdown-toggle" type="button">
+                    Gelen Mesajlar  <span class="caret m-l-5"></span>
+                </button>
+                <div class="dropdown-menu">
+                    <button type="submit" class="btn btn-outline-danger">Okundu Olarak İşaretle</button>
+                </div>
+            </div>
 
+        </div>
+
+@foreach (var item in Model)
+{
+    string status = item.IsRead ? "table-light" : "font-weight-bold";
+    <div class="email-list m-t-15">
+        <div class="message @status">
+            <a href="/Message/MessageDetail/@item.MessageId">
+                <div class="col-mail col-mail-1">
+                    <div class="email-checkbox">
+                        <input type="checkbox" name="messageID" value="@item.MessageId" class="message-checkbox" data-id="@item.MessageId">
+                        <label class="toggle" for="chk_@item.MessageId"></label>
+                    </div>
+                    <span class="star-toggle ti-star"></span>
+                </div>
+                <div class="col-mail col-mail-2">
+                    <div class="subject">@item.Subject</div>
+                    <div class="date">@item.SendDate.ToString("dd-MMM-yyyy")</div>
+                </div>
+            </a>
+        </div>
+    </div>
+}
+</form>

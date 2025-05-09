@@ -1,0 +1,37 @@
+﻿@using Microsoft.AspNetCore.Antiforgery
+
+
+<div class="email-left-box">
+    <a href="/Message/CreateMessage/" class="btn btn-primary btn-block">Identity Projesi</a>
+    <div class="mail-list mt-4">
+        <a href="/Profile/ProfileDetail/" class="list-group-item border-0 p-r-0">
+            <i class="fa fa-user font-18 align-middle mr-2"></i> Profilim
+        </a>
+        <a href="/Message/Inbox/" class="list-group-item border-0 text-primary p-r-0">
+            <i class="fa fa-inbox font-18 align-middle mr-2"></i>
+            <b>Gelen Mesajlar</b>
+            <span class="badge badge-primary badge-sm float-right m-t-5">@ViewBag.GelenMesajSayisi</span>
+        </a>
+        <a href="/Message/SendBox/" class="list-group-item border-0 p-r-0">
+            <i class="fa fa-paper-plane font-18 align-middle mr-2"></i>
+            <b>Giden Mesajlar</b>
+            <span class="badge badge-warning badge-sm float-right m-t-5">@ViewBag.GidenMesajSayisi</span>
+        </a>
+        <a href="/Message/CreateMessage/" class="list-group-item border-0 p-r-0">
+            <i class="fa fa-pencil font-18 align-middle mr-2"></i> Yeni mesaj oluştur
+        </a>
+        <a href="/Register/CreateUser/" class="list-group-item border-0 p-r-0">
+            <i class="mdi mdi-file-document-box font-18 align-middle mr-2"></i> Yeni kullanıcı oluştur
+        </a>
+        <a href="/Login/UserLogin/" class="list-group-item border-0 p-r-0">
+            <i class="fa fa-sign-in font-18 align-middle mr-2"></i> Giriş Yap
+        </a>
+        <form id="logoutForm" method="post" action="/Register/Logout" class="d-inline">
+            @Html.AntiForgeryToken()
+            <a href="javascript:{}" onclick="document.getElementById('logoutForm').submit();" class="list-group-item border-0 p-r-0">
+                <i class="fa fa-sign-out font-18 align-middle mr-2"></i> Çıkış Yap
+            </a>
+        </form>
+
+    </div>
+</div>

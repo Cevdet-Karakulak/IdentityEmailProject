@@ -76,6 +76,7 @@ namespace IdentityEmailProject.Controllers
             return View(message);
         }
 
+
         [Authorize]
         public async Task<IActionResult> Search(string query, string page)
         {
